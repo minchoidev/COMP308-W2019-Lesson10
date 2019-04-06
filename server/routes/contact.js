@@ -9,11 +9,13 @@ let contactController = require('../controllers/contact');
 
 function requireAuth(req, res, next) {
     // check if the user is logged in
-    if (!req.isAuthenticated()) {
+    if(!req.isAuthenticated()) {
         return res.redirect('/login');
     }
     next();
 }
+
+
 
 /* GET Contact List page - READ Operation */
 router.get('/', passport.authenticate('jwt', { session: false }), contactController.displayContactList);
@@ -33,5 +35,6 @@ router.post('/edit/:id', passport.authenticate('jwt', { session: false }), conta
 
 /* GET request to perform the delete action */
 router.get('/delete/:id', passport.authenticate('jwt', { session: false }), contactController.performDelete);
+
 
 module.exports = router;
