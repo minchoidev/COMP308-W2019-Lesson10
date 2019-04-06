@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
     private router: Router
     ) {}
 
+  // if not authorized, then route to /login
   canActivate(): boolean {
     if(this.authService.loggedIn()) {
       return true;
